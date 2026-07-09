@@ -37,6 +37,7 @@ const AppRoutes = () => {
         <Route path="/farmer/add-crop" element={<ProtectedRoute role="farmer"><AddCrop /></ProtectedRoute>} />
         <Route path="/buyer/dashboard" element={<ProtectedRoute role="buyer"><BuyerDashboard /></ProtectedRoute>} />
         <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
+        <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
@@ -53,3 +54,5 @@ export default function App() {
     </BrowserRouter>
   );
 }
+import Orders from './pages/Orders';
+import Analytics from './pages/Analytics';

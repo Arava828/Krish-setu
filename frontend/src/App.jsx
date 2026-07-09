@@ -10,6 +10,9 @@ import BuyerDashboard from './pages/BuyerDashboard';
 import CropListing from './pages/CropListing';
 import AddCrop from './pages/AddCrop';
 import Orders from './pages/Orders';
+import Analytics from './pages/Analytics';
+import MarketTrends from './pages/MarketTrends';
+import AIFeatures from './pages/AIFeatures';
 
 const ProtectedRoute = ({ children, role }) => {
   const { user, loading } = useAuth();
@@ -33,6 +36,8 @@ const AppRoutes = () => {
         <Route path="/login" element={user ? <Navigate to={user.role === 'farmer' ? '/farmer/dashboard' : '/buyer/dashboard'} /> : <Login />} />
         <Route path="/register" element={user ? <Navigate to="/" /> : <Register />} />
         <Route path="/crops" element={<CropListing />} />
+        <Route path="/market-trends" element={<MarketTrends />} />
+        <Route path="/ai-features" element={<ProtectedRoute><AIFeatures /></ProtectedRoute>} />
         <Route path="/farmer/dashboard" element={<ProtectedRoute role="farmer"><FarmerDashboard /></ProtectedRoute>} />
         <Route path="/farmer/add-crop" element={<ProtectedRoute role="farmer"><AddCrop /></ProtectedRoute>} />
         <Route path="/buyer/dashboard" element={<ProtectedRoute role="buyer"><BuyerDashboard /></ProtectedRoute>} />
@@ -54,5 +59,3 @@ export default function App() {
     </BrowserRouter>
   );
 }
-import Orders from './pages/Orders';
-import Analytics from './pages/Analytics';

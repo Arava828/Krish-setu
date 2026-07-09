@@ -47,8 +47,17 @@ export default function Analytics() {
     { name: 'Chilli', demand: 60, color: '#ec4899' },
   ];
 
+  const kpiData = [
+    { label: 'Total Revenue', value: `₹${((stats?.totalRevenue || 128000)/1000).toFixed(0)}K`, icon: '💰', color: '#15803d', bg: '#f0fdf4', change: '+18%' },
+    { label: 'Total Orders', value: stats?.totalOrders || 47, icon: '📦', color: '#1d4ed8', bg: '#dbeafe', change: '+12%' },
+    { label: 'Active Crops', value: stats?.activeCrops || 7, icon: '🌿', color: '#d97706', bg: '#fef9c3', change: '+3%' },
+    { label: 'Avg Order Value', value: '₹2,840', icon: '📈', color: '#7c3aed', bg: '#f5f3ff', change: '+8%' },
+  ];
+
   return (
     <div style={{ minHeight: '100vh', background: '#f0fdf4', padding: '24px 28px' }}>
+
+      {/* Header */}
       <div style={{ marginBottom: '24px' }}>
         <h1 style={{ fontSize: '24px', fontWeight: 800, color: '#1a2e1a' }}>📊 Analytics Dashboard</h1>
         <p style={{ fontSize: '13px', color: '#6b7280', marginTop: '4px' }}>Your performance insights and market trends</p>
@@ -56,12 +65,7 @@ export default function Analytics() {
 
       {/* KPI Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '14px', marginBottom: '24px' }}>
-        {[
-          { label: 'Total Revenue', value: `₹${((stats?.totalRevenue || 128000)/1000).toFixed(0)}K`, icon: '💰', color: '#15803d', bg: '#f0fdf4', change: '+18%' },
-          { label: 'Total Orders', value: stats?.totalOrders || 47, icon: '📦', color: '#1d4ed8', bg: '#dbeafe', change: '+12%' },
-          { label: 'Active Crops', value: stats?.activeCrops || 7, icon: '🌿', color: '#d97706', bg: '#fef9c3', change: '+3%' },
-          { label: 'Avg Order Value', value: '₹2,840', icon: '📈', color: '#7c3aed', bg: '#f5f3ff', change: '+8%' },
-        ].map((k, i) => (
+        {kpiData.map((k, i) => (
           <div key={i} style={{ background: '#fff', borderRadius: '14px', padding: '18px', border: '1.5px solid #e5e7eb' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
               <span style={{ fontSize: '11px', fontWeight: 600, color: '#9ca3af', textTransform: 'uppercase' }}>{k.label}</span>
@@ -81,7 +85,7 @@ export default function Analytics() {
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: '12px', height: '160px', paddingBottom: '8px' }}>
             {monthlyData.map((d, i) => (
               <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px', height: '100%', justifyContent: 'flex-end' }}>
-                <div style={{ fontSize: '10px', color: '#6b7280', fontWeight: 600' }}>₹{(d.value/1000).toFixed(0)}K</div>
+                <div style={{ fontSize: '10px', color: '#6b7280', fontWeight: 600 }}>₹{(d.value/1000).toFixed(0)}K</div>
                 <div style={{ width: '100%', background: 'linear-gradient(180deg,#15803d,#4ade80)', borderRadius: '6px 6px 0 0', height: `${(d.value/maxVal)*130}px`, transition: 'all .3s', cursor: 'pointer', minHeight: '20px' }}
                   onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
                   onMouseLeave={e => e.currentTarget.style.opacity = '1'} />
@@ -101,7 +105,7 @@ export default function Analytics() {
                 <span style={{ fontSize: '12px', fontWeight: 700, color: c.color }}>{c.demand}%</span>
               </div>
               <div style={{ height: '8px', background: '#f3f4f6', borderRadius: '4px', overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: `${c.demand}%`, background: c.color, borderRadius: '4px', transition: 'width .5s ease' }} />
+                <div style={{ height: '100%', width: `${c.demand}%`, background: c.color, borderRadius: '4px' }} />
               </div>
             </div>
           ))}
@@ -127,7 +131,7 @@ export default function Analytics() {
           ))}
         </div>
 
-        {/* Top Performing Crops */}
+        {/* Top Crops */}
         <div style={{ background: '#fff', borderRadius: '14px', padding: '20px', border: '1.5px solid #e5e7eb' }}>
           <div style={{ fontSize: '15px', fontWeight: 800, color: '#1a2e1a', marginBottom: '16px' }}>🏆 Top Crops</div>
           {[

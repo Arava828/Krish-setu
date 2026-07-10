@@ -8,7 +8,13 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000'],
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://krish-setu.vercel.app',
+    'https://krish-setu-git-main-arava-ajay-kumar.vercel.app',
+    'https://krish-setu-lh52f1z8q-arava-ajay-kumar.vercel.app'
+  ],
   credentials: true
 }));
 app.use(express.json());
